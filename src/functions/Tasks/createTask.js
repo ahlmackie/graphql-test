@@ -12,6 +12,7 @@ export const createTask = {
     const newTask = await Task.create({
       ...args.record,
       user_id: context.user._id,
+      //techincally we can mutate the category_id from a string into a mongodb objectId here?
     });
 
     return newTask;

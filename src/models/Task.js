@@ -14,6 +14,12 @@ const ModelSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    //added category_id to schema
+    //also modified the taskDetailsVerification functions to check the category_id exists
+    //can added required property / but not sure if the project user would need this...
+    category_id: {
+      type: String
+    },
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
     },

@@ -24,10 +24,18 @@ const {
   Mutation: TaskMessageMutation,
 } = require("./TaskMessage");
 
+//added categrories schema
+const {
+  Query: CategoryQuery,
+  Mutation: CategoryMutation,
+} = require("./Category");
+
+
 const { Query: TaskQuery, Mutation: TaskMutation } = require("./Task");
 
 const { Mutation: PageMutation, Query: PageQuery } = require("./Page");
 
+//added Category query
 schemaComposer.Query.addFields({
   ...UserQuery,
   ...PermissionRoleQuery,
@@ -35,9 +43,11 @@ schemaComposer.Query.addFields({
   ...AdminUserQuery,
   ...TaskQuery,
   ...TaskMessageQuery,
+  ...CategoryQuery,
   ...PageQuery,
 });
 
+//added Category mutation
 schemaComposer.Mutation.addFields({
   ...UserMutation,
   ...PermissionRoleMutation,
@@ -45,6 +55,7 @@ schemaComposer.Mutation.addFields({
   ...AdminUserMutation,
   ...TaskMutation,
   ...TaskMessageMutation,
+  ...CategoryMutation,
   ...PageMutation,
 });
 

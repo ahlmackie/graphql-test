@@ -1,10 +1,12 @@
 import { AuthenticationError } from 'apollo-server';
+import { Category } from '../../models/Category';
 
 export const taskDetailsVerification = {
     type: `type TaskDetailsVerificationResponse { success: Boolean error: String}`,
     args: {
         title: 'String',
         description: 'String',
+        category_id: 'String'
     },
     resolve: async (parent, args, context, info) => {
         if (!context.user) {
@@ -42,6 +44,16 @@ export const taskDetailsVerification = {
             return {
                 error: 'We have detected an email address in your task description.  Email addresses are not allowed.',
             };
+        }
+        if (args.category_id) {
+            console.log(args.category_id)
+            try {
+                const result = await Category.findOne({ _id: args.category_id })
+                if (!result) return { error: 'category_id is not recognised' };
+            } catch (error) {
+                // can add some switch functions here to handle this error depending on front end integration, else throw
+                throw error
+            }
         }
 
         return { success: true, error: null };
